@@ -13,4 +13,6 @@ Just download the git then run `composer install`
 Please make sure to work with same flow for any `resource` ar any `single route`.
 
 # To do
+- User rules/permissions
+- Teams
 - Tasks

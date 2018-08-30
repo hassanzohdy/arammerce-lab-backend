@@ -16,3 +16,4 @@ Please make sure to work with same flow for any `resource` ar any `single route`
 - User rules/permissions
 - Teams
 - Tasks
+- Proposals

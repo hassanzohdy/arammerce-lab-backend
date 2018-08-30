@@ -51,7 +51,7 @@ class AnswersRepository extends RepositoryManager implements RepositoryInterface
         $answer->comment = (string) $request->comment;
 
         if ($request->image) {
-            $answer->image = $request->image->store('poll/answers');
+            $answer->image = $request->image->store('images/poll/answers');
         } elseif ($request->image_url) {
             $answer->image = Str::removeFirst(url(''), $request->image_url);
         }

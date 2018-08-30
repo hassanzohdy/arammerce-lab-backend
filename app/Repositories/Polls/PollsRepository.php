@@ -46,9 +46,13 @@ class PollsRepository extends RepositoryManager implements RepositoryInterface
             //     $record->created_at = Carbon::parse($record->created_at)->format('d-m-Y');
             // }
 
-            // if (! empty($record->ends_at)) {
-            //     $record->ends_at = Carbon::parse($record->ends_at)->format('d-m-Y');
-            // }
+            if (! empty($record->ends_at) && $record->status == 'voting') {
+                if (Carbon::parse($record->ends_at)->timestamp < time()) {
+                    $poll = new Poll($record);
+                    $record->status = $poll->status == 'ended';
+                    $poll->save();
+                }
+            }
 
             if (! empty($record->creatorImage)) {
                 if (! filter_var($record->creatorImage, FILTER_VALIDATE_URL) && ! Str::startsWith($record->creatorImage, 'data:image')) {
@@ -154,7 +158,6 @@ class PollsRepository extends RepositoryManager implements RepositoryInterface
                     ->selectRaw('CONCAT(u.first_name, " ", u.last_name) as creatorName')
                     ->first();
 
-
         if (! empty($poll->creatorImage)) {
             if (! filter_var($poll->creatorImage, FILTER_VALIDATE_URL) && ! Str::startsWith($pull->creatorImage, 'data:image')) {
                 $poll->creatorImage = url($poll->creatorImage);
@@ -162,6 +165,11 @@ class PollsRepository extends RepositoryManager implements RepositoryInterface
         }
         
         $pollInfo = [];
+
+        if (Carbon::parse($poll->ends_at)->timestamp < time() && $poll->status == 'voting') {
+            $poll->status = 'ended';
+            $poll->save();
+        }
 
         foreach (['id', 'title', 'type', 'status', 'voted', 'created_by', 'creatorName', 'creatorImage', 'description', 'created_at', 'ends_at', 'requires_comment', 'allow_more_answers'] as $column) {
             $pollInfo[$column] = $poll->$column;

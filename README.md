@@ -14,8 +14,8 @@ Please make sure to work with same flow for any `resource` ar any `single route`
 
 # To do
 - Tasks (**In progress**)
+- Events (**In progress**)
+- Blog/Tutorials (**In progress**)
 - User rules/permissions
 - User email notifications
-- Teams
-- Blog/Tutorials
 - Proposals

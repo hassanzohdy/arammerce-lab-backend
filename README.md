@@ -13,7 +13,9 @@ Just download the git then run `composer install`
 Please make sure to work with same flow for any `resource` ar any `single route`.
 
 # To do
+- Tasks (**In progress**)
 - User rules/permissions
+- User email notifications
 - Teams
-- Tasks
+- Blog/Tutorials
 - Proposals

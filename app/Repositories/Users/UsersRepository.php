@@ -4,6 +4,7 @@ namespace App\Repositories\Users;
 
 use Str;
 use Request;
+use Collection;
 use RepositoryManager;
 use App\Models\User\User;
 use App\Models\User\UserAccessToken;
@@ -26,6 +27,20 @@ class UsersRepository extends RepositoryManager implements RepositoryInterface
      * {@inheritDoc}
      */
     const TABLE_ALIAS = 'u';
+
+    /**
+     * {@inheritDoc}
+     */
+    protected function records(Collection $records): Collection
+    {
+        return $records->map(function ($record) {
+            if (! empty($record->birthdate)) {
+                $record->birthdate = date('d-m-Y', $record->birthdate);
+            }
+            
+            return $record;
+        });
+    }
 
     /**
      * {@inheritDoc}

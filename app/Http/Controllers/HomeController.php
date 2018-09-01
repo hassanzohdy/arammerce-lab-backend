@@ -11,7 +11,12 @@ class HomeController extends Controller
      */
     public function index(\Request $request)
     {
-        
-        echo bcrypt('12345678');
+        $user = \App\Models\User\User::find(1);
+
+        $user->id = 1;
+
+        $user->first_name = 'HH';
+
+        $user->save();
     }
 }

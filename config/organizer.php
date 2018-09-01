@@ -25,6 +25,10 @@ return [
         'pollVotes' => App\Repositories\Polls\PollVotesRepository::class,
         'answers' => App\Repositories\Polls\AnswersRepository::class,
         'users' => App\Repositories\Users\UsersRepository::class,
+        'posts' => App\Repositories\Posts\PostsRepository::class,
+        'tags' => App\Repositories\Posts\TagsRepository::class,
+        'events' => App\Repositories\Events\EventsRepository::class,
+        'tasks' => App\Repositories\Tasks\TasksRepository::class,
     ],
     
     /*

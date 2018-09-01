@@ -30,11 +30,17 @@ Route::group([
 
     // posts
     Route::get('/posts', 'Posts\PostsController@index');
-    Route::get('/posts/{id}', 'Posts\PostsController@show');
-    Route::get('/posts/{id}/comments', 'Posts\PostsController@comments');
-    Route::get('/posts/{id}/like/{type}', 'Posts\PostsController@like');
+    Route::post('/posts/create', 'Posts\PostsController@create');
+    Route::post('/posts/update/{id}', 'Posts\PostsController@update');
+    Route::get('/posts/{id}', 'Posts\PostController@show');
+    Route::get('/posts/{id}/comments', 'Posts\PostCommentsController@index');
+
+    // likes
+    // Route::get('/posts/{id}/like/{type}', 'Posts\PostController@like');
+
+    // tags
     Route::get('/tags/{tag}', 'Posts\TagsController@index');
-    
+
     Route::group([
         'prefix' => '/management',
         'namespace' => 'Management',

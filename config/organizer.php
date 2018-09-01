@@ -26,6 +26,7 @@ return [
         'answers' => App\Repositories\Polls\AnswersRepository::class,
         'users' => App\Repositories\Users\UsersRepository::class,
         'posts' => App\Repositories\Posts\PostsRepository::class,
+        'postComments' => App\Repositories\Posts\PostCommentsRepository::class,
         'tags' => App\Repositories\Posts\TagsRepository::class,
         'events' => App\Repositories\Events\EventsRepository::class,
         'tasks' => App\Repositories\Tasks\TasksRepository::class,

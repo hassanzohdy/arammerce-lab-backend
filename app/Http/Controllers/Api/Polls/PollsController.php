@@ -48,16 +48,13 @@ class PollsController extends ApiController
 
         $poll = (object) $this->polls->getPollWithAnswers($pollId);
 
-        if ($poll->allow_more_answers && $request->custom_answer && ! $request->answer) {
-            if ($poll->voted) {
-                return $this->badRequest('voted');
-            }
-
+        if ($poll->allow_more_answers && $request->custom_answer && ! ($request->answer || $request->answers)) {
             $request->poll_id = $pollId;
 
             $request->id = null; // just to disable the /pollId in the uri
 
-            $request->answer = $request->custom_answer;
+            $request->answer = $request->custom_answer['answer'];
+            $request->image = $request->custom_answer['image'];
 
             $answer = $this->answers->create($request);
             
@@ -68,20 +65,28 @@ class PollsController extends ApiController
             return $this->show($request, $pollId);
         }
 
-        $answerExists = false;
-        foreach ($poll->answers as $answer) {
-            if ($answer['id'] == $request->answer) {
-                $request->answer = (object) $answer;
-                $answerExists = true;
+        $answerExists = true;
+        $answers = (array) ($request->answer ?: $request->answers);
+
+        $pollAnswersIds = $poll->answers->pluck('id')->toArray();
+
+        foreach ($answers as $answerId) {
+            if (! in_array($answerId, $pollAnswersIds)) {
+                $answerExists = false;
                 break;
             }
         }
 
-        if ($poll->voted || ! $answerExists) {
-            return $this->badRequest('voted');
+        if (! $answerExists) {
+            return $this->badRequest('Invalid Voting!');
         }
 
-        $this->polls->vote($pollId, $request);
+        foreach ($poll->answers as $answer) {
+            if (in_array($answer['id'], $answers)) {
+                $request->answer = $answer;
+                $this->polls->vote($pollId, $request);
+            }
+        }
 
         return $this->show($request, $pollId);
     }

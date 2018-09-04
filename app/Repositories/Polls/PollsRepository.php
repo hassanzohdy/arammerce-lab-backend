@@ -105,8 +105,9 @@ class PollsRepository extends RepositoryManager implements RepositoryInterface
             $request->poll_id = $poll->id;
 
             $this->answers->create($request);
-
-            $request->id = null;
+            foreach ($answer as $key => $value) {
+                $request->$key = null;
+            }
         }
     }
 

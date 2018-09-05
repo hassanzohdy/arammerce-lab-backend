@@ -56,8 +56,7 @@ class TagsRepository extends RepositoryManager implements RepositoryInterface
     public function get(int $id): \Item
     {
         $tag = Tag::find($id);
-       
-        
+
         $tag->image = url($tag->image);
 
         $info = (object) $tag->getAttributes();

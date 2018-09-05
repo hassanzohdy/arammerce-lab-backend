@@ -105,6 +105,8 @@ class PollsRepository extends RepositoryManager implements RepositoryInterface
             $request->poll_id = $poll->id;
 
             $this->answers->create($request);
+            
+            // resetting request keys for next iteration.  
             foreach ($answer as $key => $value) {
                 $request->$key = null;
             }
@@ -215,11 +217,7 @@ class PollsRepository extends RepositoryManager implements RepositoryInterface
         }
         
         if ($this->select->has('createdBy')) {
-            $this->select->remove('createdBy');
-
-            $this->join('users as u', 'u.id', '=', 'p.created_by');
-
-            $this->select->add($this->raw('CONCAT(u.first_name, " ", u.last_name) as creatorName'), 'u.image as creatorImage');
+            $this->creator();
         }
     } 
     

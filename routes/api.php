@@ -35,6 +35,9 @@ Route::group([
     Route::get('/posts/{id}', 'Posts\PostController@show');
     Route::get('/posts/{id}/comments', 'Posts\PostCommentsController@index');
 
+    // Tags
+    Route::get('/tags/list', 'Posts\TagsController@tagsList');
+
     // likes
     // Route::get('/posts/{id}/like/{type}', 'Posts\PostController@like');
 

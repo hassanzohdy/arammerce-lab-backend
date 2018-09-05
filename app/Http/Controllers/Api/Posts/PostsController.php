@@ -16,6 +16,7 @@ class PostsController extends ApiController
         return $this->success([
             'posts' => $this->posts->list([
                 'select' => ['id', 'title', 'created_at', 'createdBy', 'tags'],
+                'status' => 'active',
             ]),
         ]);
     }
@@ -30,7 +31,9 @@ class PostsController extends ApiController
     {
         $post = $this->posts->create($request);
         return $this->success([
-            'postId' => $post->id,
+            'post' => [
+                'id' => $post->id,
+            ],
         ]);
     }
 

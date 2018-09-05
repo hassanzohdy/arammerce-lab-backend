@@ -49,5 +49,6 @@ return [
         Illuminate\Support\Collection::class => HZ\Laravel\Organizer\App\Macros\Support\Collection::class,
         Illuminate\Database\Query\Builder::class => HZ\Laravel\Organizer\App\Macros\Database\Query\Builder::class,
         Illuminate\Database\Schema\Blueprint::class => HZ\Laravel\Organizer\App\Macros\Database\Schema\Blueprint::class,
+        HZ\Laravel\Organizer\App\Managers\RepositoryManager::class => App\Macros\Repository::class,
     ],
 ];

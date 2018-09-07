@@ -7,7 +7,9 @@ This is the source code of the backend [lab](http://94.237.44.153/lab/en/)
 Anyone is so welcomed to make a `PR`.
 
 # Installation
-Just download the git then run `composer install`
+- Run `composer install`
+- Once all packages are downloaded, rename `.env.example` to `.env` and edit the database info.
+- Now run `php artisan migrate`
 
 # Laravel Organizer
 This package mainly depends on [Laravel Organizer](https://github.com/hassanzohdy/laravel-organizer

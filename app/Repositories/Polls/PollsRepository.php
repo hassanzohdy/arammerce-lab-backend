@@ -48,7 +48,7 @@ class PollsRepository extends RepositoryManager implements RepositoryInterface
 
             if (! empty($record->ends_at) && $record->status == 'voting') {
                 if (Carbon::parse($record->ends_at)->timestamp < time()) {
-                    $poll = new Poll((array) $record);
+                    $poll = Poll::find($record->id);
                     $record->status = $poll->status == 'ended';
                     $poll->save();
                 }

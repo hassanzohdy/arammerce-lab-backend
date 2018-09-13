@@ -9,6 +9,8 @@ Anyone is so welcomed to make a `PR`.
 # Installation
 - Run `composer install`
 - Once all packages are downloaded, rename `.env.example` to `.env` and edit the database info.
+- If you don't have phpMyAdmin, you can run the following command to create the database as it will create new database with the database name in the **.env** file.
+    - `php artisan db::create`
 - Now run `php artisan migrate`
 
 # Laravel Organizer

@@ -79,7 +79,7 @@ class AnswersRepository extends RepositoryManager implements RepositoryInterface
         }
 
         if ($this->select->has('totalVotes')) {
-            $this->select->replace('totalVotes', $this->raw('(SELECT COUNT(pv.id) FROM poll_votes as pv WHERE pa.id = pv.poll_answer_id) as totalVotes'));
+            $this->select->replace('totalVotes', $this->raw('(SELECT COUNT(pv.id) FROM poll_votes as pv WHERE pa.id = pv.poll_answer_id AND pv.deleted_at IS NULL) as totalVotes'));
         }
     } 
     

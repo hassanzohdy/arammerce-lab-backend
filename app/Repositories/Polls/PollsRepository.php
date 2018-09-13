@@ -213,7 +213,7 @@ class PollsRepository extends RepositoryManager implements RepositoryInterface
         }
 
         if ($this->select->has('totalVotes')) {
-            $this->select->replace('totalVotes', $this->raw('(SELECT COUNT(pv.id) FROM poll_votes as pv WHERE p.id = pv.poll_id) as totalVotes'));
+            $this->select->replace('totalVotes', $this->raw('(SELECT COUNT(pv.id) FROM poll_votes as pv WHERE p.id = pv.poll_id AND pv.deleted_at IS NULL) as totalVotes'));
         }
         
         if ($this->select->has('createdBy')) {

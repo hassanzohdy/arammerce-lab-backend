@@ -3,7 +3,7 @@ namespace App\Models\Task;
 
 use Model;
 
-class User extends Model
+class Supervisor extends Model
 {
     /**
      * {@inheritDoc}

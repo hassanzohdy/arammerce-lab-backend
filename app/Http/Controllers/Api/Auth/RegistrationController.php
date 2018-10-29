@@ -41,19 +41,19 @@ class RegistrationController extends ApiController
             'first_name' => 'required',
             'last_name' => 'required',
             'password' => 'required|min:8',
-            'image' => 'image',
+            // 'image' => 'image',
         ]);
 
-        $validator->after(function ($validator) use ($request) {
-            // validate if the given image is valid image
-            if ($request->image_url && ! @exif_imagetype($request->image_url)) {
-                $validator->errors()->add('image_url', 'Invalid image url!');
-            }
+        // $validator->after(function ($validator) use ($request) {
+        //     // validate if the given image is valid image
+        //     if ($request->image_url && ! @exif_imagetype($request->image_url)) {
+        //         $validator->errors()->add('image_url', 'Invalid image url!');
+        //     }
 
-            if (! $request->image && ! $request->image_url) {
-                $validator->errors()->add('image', 'Image is required!');
-            }
-        });
+        //     if (! $request->image && ! $request->image_url) {
+        //         $validator->errors()->add('image', 'Image is required!');
+        //     }
+        // });
 
         return $validator;
     }

@@ -180,6 +180,7 @@ return [
         'Collection' => Illuminate\Support\Collection::class,
         'Item' => HZ\Laravel\Organizer\App\Managers\Item::class,
         'Model' => HZ\Laravel\Organizer\App\Managers\Model::class,
+        'BaseModel' => Illuminate\Database\Eloquent\Model::class,
         'ModelTrait' => HZ\Laravel\Organizer\App\Traits\ModelTrait::class,
         'RepositoryManager' => HZ\Laravel\Organizer\App\Managers\RepositoryManager::class,
         'ApiController' => HZ\Laravel\Organizer\App\Managers\ApiController::class,

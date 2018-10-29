@@ -40,7 +40,7 @@ class PostsController extends ApiController
     /**
      * Update post
      *
-     * @param int $Id
+     * @param int $id
      * @param \Request $request
      * @return mixed
      */
@@ -49,6 +49,22 @@ class PostsController extends ApiController
         $this->posts->update($id, $request);
         return $this->success([
             'postId' => $id,
+        ]);
+    }
+
+    /**
+     * Delete post
+     *
+     * @param int $id
+     * @param \Request $request
+     * @return mixed
+     */
+    public function delete(int $id)
+    {
+        $this->posts->delete($id);
+        
+        return $this->success([
+            'success' => true,
         ]);
     }
 }

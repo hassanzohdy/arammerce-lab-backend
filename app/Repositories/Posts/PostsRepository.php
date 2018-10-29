@@ -2,6 +2,7 @@
 namespace App\Repositories\Posts;
 
 use DB;
+use Str;
 use Item;
 use Request;
 use Collection;
@@ -44,6 +45,9 @@ class PostsRepository extends RepositoryManager implements RepositoryInterface
     protected function records(Collection $records): Collection 
     {
         return $records->map(function ($record) {
+            if ($record->creatorImage && Str::startsWith($record->creatorImage, 'images/')) {
+                $record->creatorImage = url($record->creatorImage);
+            }
             if ($this->getTags) {
                 $tags = DB::table('post_tags as pt')->join('tags as t', 't.id', '=', 'pt.tag_id')->where('pt.post_id', $record->id)->get(['t.name', 't.image']);
                 $record->tags = $tags->map(function ($tag) {
@@ -98,6 +102,9 @@ class PostsRepository extends RepositoryManager implements RepositoryInterface
                     ->selectRaw('CONCAT(u.first_name, " ", u.last_name) as creatorName')
                     ->first();
 
+        if ($post->creatorImage && Str::startsWith($post->creatorImage, 'images/')) {
+            $post->creatorImage = url($post->creatorImage);
+        }
         $info = (object) $post->getAttributes();
 
         $tags = DB::table('post_tags as pt')->join('tags as t', 't.id', '=', 'pt.tag_id')->where('pt.post_id', $post->id)->get(['t.name', 't.image']);

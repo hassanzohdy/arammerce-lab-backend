@@ -22,7 +22,9 @@ class Challenge extends JsonResource
             'ends_at' => $this->ends_at,
             'status' => $this->when($this->status, $this->status),
             'tags' => new Tags($this->tags),
+            'participants' => [],
         ];
+        
         foreach ($this->participants as $participant) {
             $data['participants'][] = new User($participant);
         }

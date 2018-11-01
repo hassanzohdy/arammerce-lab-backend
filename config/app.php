@@ -106,6 +106,8 @@ return [
 
     'key' => env('APP_KEY'),
 
+    'baseUrl' => 'https://apps.hasanzohdy.com/lab',
+
     'cipher' => 'AES-256-CBC',
 
     /*

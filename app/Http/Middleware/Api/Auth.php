@@ -17,7 +17,7 @@ class Auth
     /**
      * Routes that does not have permissions
      */
-    protected $ignoredRoutes = ["/api/login", "/api/register"];
+    protected $ignoredRoutes = ["/api/login", "/api/register", '/api/login/forget-password'];
 
     /**
      * {@inheritDoc}

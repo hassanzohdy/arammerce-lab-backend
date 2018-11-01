@@ -20,6 +20,7 @@ Route::group([
     'namespace' => 'Api',
 ], function () {
     Route::post('/register', 'Auth\RegistrationController@index');
+    Route::post('/login/forget-password', 'Auth\LoginController@forgetPassword');
     Route::post('/login', 'Auth\LoginController@index');
 
     // polls

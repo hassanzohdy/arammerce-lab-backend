@@ -118,6 +118,14 @@ class UsersRepository extends RepositoryManager implements RepositoryInterface
     /**
      * {@inheritDoc}
      */
+    public function getBy(string $column, $value)
+    {
+        return User::where($column, $value)->first();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     protected function select()
     {
     } 

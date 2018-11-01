@@ -7,7 +7,7 @@ use App\Items\User\User;
 use Auth;
 use Request;
 use Validator;
-use App\Models\User\resetPassword;
+use App\Models\User\ResetPassword;
 
 class LoginController extends ApiController
 {
